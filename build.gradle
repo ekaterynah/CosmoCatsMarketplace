@@ -12,6 +12,20 @@ repositories {
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+    // Jakarta Validation API
+    implementation 'jakarta.validation:jakarta.validation-api:3.1.0' // Use the latest version
+
+    // Hibernate Validator (Jakarta Validation implementation)
+    implementation 'org.hibernate.validator:hibernate-validator:7.0.4.Final' // Use the latest version
+
+    // MapStruct API
+    implementation 'org.mapstruct:mapstruct:1.5.2.Final' // Replace with the latest version
+
+    // MapStruct Processor (needed for annotation processing)
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.2.Final' // Replace with the latest version
+
+    // Optional: For EL (Expression Language) support
+    implementation 'org.glassfish:javax.el:3.0.0' // Optional, needed for EL expressions
 }
 
 test {
