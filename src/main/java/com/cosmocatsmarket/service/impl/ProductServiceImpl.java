@@ -22,7 +22,19 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductDto> getAllProducts() {
-        return List.of();
+        ProductDto product1 = ProductDto.builder()
+                .id("1")
+                .name("Product One")
+                .price(100)
+                .build();
+
+        ProductDto product2 = ProductDto.builder()
+                .id("2")
+                .name("Product Two")
+                .price(200)
+                .build();
+
+        return List.of(product1, product2);
     }
 
     private final ProductMapper productMapper;
@@ -37,7 +49,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     public ProductDto getProductById(int productId){
-        Product product = null;
-        return productMapper.toProductDto(product);
+        for (ProductDto product : getAllProducts()) {
+            if (Integer.parseInt(product.getId()) == productId) {
+                return product;
+            }
+        }
+        return null;
     }
 }
