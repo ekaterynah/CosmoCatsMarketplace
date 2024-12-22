@@ -8,15 +8,13 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface ProductMapper {
 
-    @Mapping(target = "id", source = "name")
+    @Mapping(target = "id", source = "id")
     @Mapping(target = "name", source = "name")
     @Mapping(target = "price", source = "price")
-    @Mapping(target = "category", source = "category")
-    Product toProduct(ProductDto customerDetails);
+    Product toProduct(ProductDto productDto);
 
-    @Mapping(target = "id", source = "name")
+    @Mapping(target = "id", source = "id")
     @Mapping(target = "name", source = "name")
     @Mapping(target = "price", source = "price")
-    @Mapping(target = "category", source = "category")
-    ProductDto toProductDto(Product customerDetails);
+    ProductDto toProductDto(Product product);
 }
