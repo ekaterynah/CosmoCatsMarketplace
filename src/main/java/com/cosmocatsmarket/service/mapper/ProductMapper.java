@@ -4,12 +4,19 @@ import com.cosmocatsmarket.domain.Product;
 import com.cosmocatsmarket.dto.ProductDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.Named;
 
 @Mapper(componentModel = "spring")
 public interface ProductMapper {
 
+    @Mapping(target = "id", source = "name")
     @Mapping(target = "name", source = "name")
-    //add other fields to be mapped
+    @Mapping(target = "price", source = "price")
+    @Mapping(target = "category", source = "category")
     Product toProduct(ProductDto customerDetails);
+
+    @Mapping(target = "id", source = "name")
+    @Mapping(target = "name", source = "name")
+    @Mapping(target = "price", source = "price")
+    @Mapping(target = "category", source = "category")
+    ProductDto toProductDto(Product customerDetails);
 }
