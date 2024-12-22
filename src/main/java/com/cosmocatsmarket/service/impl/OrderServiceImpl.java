@@ -4,6 +4,7 @@ import com.cosmocatsmarket.domain.Product;
 import com.cosmocatsmarket.dto.OrderDto;
 import com.cosmocatsmarket.dto.ProductDto;
 import com.cosmocatsmarket.service.OrderService;
+import com.cosmocatsmarket.service.exceptions.OrderNotFoundException;
 import com.cosmocatsmarket.service.mapper.OrderMapper;
 import com.cosmocatsmarket.service.mapper.ProductMapper;
 import lombok.RequiredArgsConstructor;
@@ -42,7 +43,7 @@ public class OrderServiceImpl implements OrderService {
                 return order;
             }
         }
-        return null;
+        throw new OrderNotFoundException(orderId);
     }
 
     @Override

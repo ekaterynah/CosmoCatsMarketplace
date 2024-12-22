@@ -43,8 +43,14 @@ public class ProductController {
             @PathVariable("productId") Integer productId) {
         log.info("Getting a product Id {}", productId);
 
-        ProductDto productDto = productService.getProductById(productId);
-        return ResponseEntity.ok(productDto);
+        try {
+            ProductDto productDto = productService.getProductById(productId);
+            return ResponseEntity.ok(productDto);
+        } catch (Exception ex) {
+            log.error("Exception occurred while getting product by id {}", productId);
+        }
+
+        return ResponseEntity.notFound().build();
     }
 
     @GetMapping()

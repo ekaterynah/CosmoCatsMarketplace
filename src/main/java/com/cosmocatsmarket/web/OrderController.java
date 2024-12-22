@@ -33,8 +33,7 @@ public class OrderController {
             @RequestBody @Valid List<ProductDto> productDtos) {
         log.info("UserId {} is creating an order", userId);
 
-        Order order = orderService.createOrder(productDtos);
-        OrderDto orderDto = orderDtoMapper.toOrderDto(order);
+        OrderDto orderDto = orderService.createOrder(productDtos);
         return ResponseEntity.ok(orderDto);
     }
 
@@ -44,9 +43,15 @@ public class OrderController {
             @PathVariable("orderId") Integer orderId) {
         log.info("UserId {} is getting an order Id {}", userId, orderId);
 
-        OrderDto orderDto = orderService.getOrderById(orderId);
-        return ResponseEntity.ok(orderDto);
 
+        try {
+            OrderDto orderDto = orderService.getOrderById(orderId);
+            return ResponseEntity.ok(orderDto);
+        } catch (Exception ex) {
+            log.error("Exception occurred while getting order by id {}", orderId);
+        }
+
+        return ResponseEntity.notFound().build();
     }
 
     @GetMapping()

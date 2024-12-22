@@ -3,12 +3,14 @@ package com.cosmocatsmarket.service.impl;
 import com.cosmocatsmarket.domain.Product;
 import com.cosmocatsmarket.dto.ProductDto;
 import com.cosmocatsmarket.service.ProductService;
+import com.cosmocatsmarket.service.exceptions.ProductNotFoundException;
 import com.cosmocatsmarket.service.mapper.ProductMapper;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.EmptyStackException;
 import java.util.List;
 
 @Service
@@ -54,6 +56,7 @@ public class ProductServiceImpl implements ProductService {
                 return product;
             }
         }
-        return null;
+
+        throw new ProductNotFoundException(productId);
     }
 }
